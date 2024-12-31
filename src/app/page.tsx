@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import H1 from "@/components/H1";
-import SearchForm from "@/components/SearchForm";
+import H1 from "@/components/h1";
+import SearchForm from "@/components/search-form";
 
 export default function Home() {
 	return (

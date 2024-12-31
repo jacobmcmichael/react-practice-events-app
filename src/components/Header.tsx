@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 
-import Logo from "@/components/Logo";
+import Logo from "@/components/logo";
 
 const routes = [
 	{ name: "Home", path: "/" },
