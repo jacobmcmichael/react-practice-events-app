@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { EventifierEvent } from "@/lib/types";
+import { EventifierEventType } from "@/lib/types";
 
-export default function EventCard({ event }: { event: EventifierEvent }) {
+export default function EventCard({ event }: { event: EventifierEventType }) {
 	return (
 		<Link
 			className="flex-1 basis-80 h-[380px] max-w-[500px]"

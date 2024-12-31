@@ -1,4 +1,4 @@
-export type EventifierEvent = {
+export type EventifierEventType = {
 	id: number;
 	name: string;
 	slug: string;
@@ -8,10 +8,4 @@ export type EventifierEvent = {
 	organizerName: string;
 	imageUrl: string;
 	description: string;
-};
-
-export type EventsPageProps = {
-	params: {
-		city: string;
-	};
 };

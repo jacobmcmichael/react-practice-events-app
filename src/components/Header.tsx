@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 
 import Logo from "@/components/logo";
+import { cN } from "@/lib/utilities";
 
 const routes = [
 	{ name: "Home", path: "/" },
@@ -24,7 +25,7 @@ export default function Header() {
 					{routes.map((route) => (
 						<li
 							key={route.path}
-							className={clsx("hover:text-white flex items-center relative transition", {
+							className={cN("hover:text-white flex items-center relative transition", {
 								"text-white": activePathname === route.path,
 								"text-white/50": activePathname !== route.path,
 							})}
