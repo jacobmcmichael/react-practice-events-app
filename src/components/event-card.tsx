@@ -5,11 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-import { EventifierEventType } from "@/lib/types";
+import { EventifierEvent } from "@prisma/client";
 
 const MotionLink = motion(Link);
 
-export default function EventCard({ event }: { event: EventifierEventType }) {
+export default function EventCard({ event }: { event: EventifierEvent }) {
 	const ref = useRef(null);
 	const { scrollYProgress } = useScroll({
 		target: ref,

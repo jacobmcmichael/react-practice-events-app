@@ -16,7 +16,7 @@ model EventifierEvent {
   slug          String   @unique
   city          String
   location      String
-  Date          DateTime
+  date          DateTime
   organizerName String
   imageUrl      String
   description   String
