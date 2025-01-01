@@ -1,9 +1,8 @@
 import { twMerge } from "tailwind-merge";
 import clsx, { ClassValue } from "clsx";
 
-import { EventifierEvent, PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { EventifierEvent } from "@prisma/client";
+import prisma from "@/lib/db";
 
 export const toCapitalCase = (text: string) => {
 	let words: string[] = text.split(" ");
@@ -28,7 +27,10 @@ export async function getEvent(slug: string): Promise<EventifierEvent | null> {
 export async function getEvents(city: string): Promise<EventifierEvent[] | null> {
 	const events = await prisma.eventifierEvent.findMany({
 		where: {
-			city: toCapitalCase(city),
+			city: city === "all" ? undefined : toCapitalCase(city),
+		},
+		orderBy: {
+			date: "asc",
 		},
 	});
 	return events;
