@@ -8,7 +8,7 @@ export default function EventCard({ event }: { event: EventifierEventType }) {
 			className="flex-1 basis-80 h-[380px] max-w-[500px]"
 			href={`/event/${event.slug}`}
 		>
-			<section className="w-full h-full relative flex flex-col bg-white/[3%] rounded-xl overflow-hidden hover:scale-105 active:scale-[1.02] transition">
+			<section className="w-full h-full relative flex flex-col bg-white/[3%] rounded-xl overflow-hidden state-effects">
 				<Image
 					className="h-[60%] object-fit"
 					src={event.imageUrl}
