@@ -1,7 +1,22 @@
-import { EventPageProps } from "@/lib/props";
+import { Metadata } from "next";
 import Image from "next/image";
 
+import { toCapitalCase } from "@/lib/utilities";
+import { EventPageProps } from "@/lib/props";
+
 import H1 from "@/components/h1";
+
+export async function generateMetadata({ params }: EventPageProps): Promise<Metadata> {
+	const slug = params.slug;
+
+	const response = await fetch(`https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`);
+	const event = await response.json();
+
+	return {
+		title: event.name,
+		description: `Event details for ${event.name}.`,
+	};
+}
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
 	return <h2 className="text-2xl mb-8">{children}</h2>;
