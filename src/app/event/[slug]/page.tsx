@@ -1,6 +1,8 @@
 import { EventPageProps } from "@/lib/props";
 import Image from "next/image";
 
+import { sleep } from "@/lib/utilities";
+
 import H1 from "@/components/h1";
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
@@ -13,6 +15,8 @@ function SectionParagraph({ children }: { children: React.ReactNode }) {
 
 export default async function Event({ params }: EventPageProps) {
 	const slug = params.slug;
+
+	await sleep(2000);
 
 	const response = await fetch(`https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`);
 	const event = await response.json();

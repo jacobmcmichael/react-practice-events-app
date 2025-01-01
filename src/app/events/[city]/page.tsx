@@ -1,4 +1,4 @@
-import { toCapitalCase } from "@/lib/utilities";
+import { sleep, toCapitalCase } from "@/lib/utilities";
 import { EventifierEventType } from "@/lib/types";
 import { EventsPageProps } from "@/lib/props";
 
@@ -7,6 +7,8 @@ import EventsList from "@/components/events-list";
 
 export default async function EventsPage({ params }: EventsPageProps) {
 	const city = params.city;
+
+	await sleep(2000);
 
 	const response = await fetch(`https://bytegrad.com/course-assets/projects/evento/api/events?city=${city}`);
 	const events: EventifierEventType[] = await response.json();

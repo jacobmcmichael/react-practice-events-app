@@ -11,3 +11,7 @@ export const toCapitalCase = (text: string) => {
 export const cN = (...inputs: ClassValue[]) => {
 	return twMerge(clsx(inputs));
 };
+
+export const sleep = async (ms: number = 1000) => {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+};
