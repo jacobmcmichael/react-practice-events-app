@@ -3,6 +3,10 @@ export type H1Props = {
 	className?: string;
 };
 
+export type EventsListProps = {
+	city: string;
+};
+
 export type EventPageProps = {
 	params: {
 		slug: string;
