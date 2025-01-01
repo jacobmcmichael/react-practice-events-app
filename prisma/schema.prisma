@@ -9,3 +9,18 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model EventifierEvent {
+  id            Int      @id @default(autoincrement())
+  name          String
+  slug          String   @unique
+  city          String
+  location      String
+  Date          DateTime
+  organizerName String
+  imageUrl      String
+  description   String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
