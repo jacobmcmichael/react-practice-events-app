@@ -3,6 +3,14 @@ import Image from "next/image";
 
 import H1 from "@/components/h1";
 
+function SectionHeading({ children }: { children: React.ReactNode }) {
+	return <h2 className="text-2xl mb-8">{children}</h2>;
+}
+
+function SectionParagraph({ children }: { children: React.ReactNode }) {
+	return <p className="text-lg leading-8 text-white/75 max-w-4xl mx-auto">{children}</p>;
+}
+
 export default async function Event({ params }: EventPageProps) {
 	const slug = params.slug;
 
@@ -53,7 +61,17 @@ export default async function Event({ params }: EventPageProps) {
 				</div>
 			</section>
 
-			<div></div>
+			<div className="min-h-[75vh] text-center px-5 py-16 space-y-12">
+				<section>
+					<SectionHeading>About this Event</SectionHeading>
+					<SectionParagraph>{event.description}</SectionParagraph>
+				</section>
+
+				<section>
+					<SectionHeading>Location</SectionHeading>
+					<SectionParagraph>{event.location}</SectionParagraph>
+				</section>
+			</div>
 		</main>
 	);
 }
