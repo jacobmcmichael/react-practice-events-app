@@ -5,6 +5,7 @@ export type H1Props = {
 
 export type EventsListProps = {
 	city: string;
+	page: number;
 };
 
 export type EventPageProps = {
@@ -13,8 +14,17 @@ export type EventPageProps = {
 	};
 };
 
-export type EventsPageProps = {
+export type EventsPageParams = {
+	searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export type EventsPageProps = EventsPageParams & {
 	params: {
 		city: string;
 	};
+};
+
+export type PaginationControlsProps = {
+	previousPath: string | null;
+	nextPath: string | null;
 };

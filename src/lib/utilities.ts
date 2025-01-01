@@ -30,7 +30,7 @@ export async function getEvent(slug: string): Promise<EventifierEvent> {
 	return event;
 }
 
-export async function getEvents(city: string): Promise<EventifierEvent[]> {
+export async function getEvents(city: string, page: number = 1) {
 	const events = await prisma.eventifierEvent.findMany({
 		where: {
 			city: city === "all" ? undefined : toCapitalCase(city),
@@ -38,11 +38,24 @@ export async function getEvents(city: string): Promise<EventifierEvent[]> {
 		orderBy: {
 			date: "asc",
 		},
+		take: 6,
+		skip: (page - 1) * 6,
 	});
 
 	if (!events) {
 		return notFound();
 	}
 
-	return events;
+	let totalCount;
+	if (city === "all") {
+		totalCount = await prisma.eventifierEvent.count();
+	} else {
+		totalCount = await prisma.eventifierEvent.count({
+			where: {
+				city: toCapitalCase(city),
+			},
+		});
+	}
+
+	return { events, totalCount };
 }

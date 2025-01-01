@@ -2,9 +2,14 @@ import { EventsListProps } from "@/lib/props";
 import { getEvents } from "@/lib/utilities";
 
 import EventCard from "@/components/event-card";
+import PaginationControls from "@/components/pagination-controls";
 
-export default async function EventsList({ city }: EventsListProps) {
-	const events = await getEvents(city);
+export default async function EventsList({ city, page }: EventsListProps) {
+	const { events, totalCount } = await getEvents(city, page);
+	const previousPath = page > 1 ? `/events/${city}?page=${page - 1}` : "";
+	const nextPath = totalCount > 6 * page ? `/events/${city}?page=${page + 1}` : "";
+
+	const paginationControls = { previousPath, nextPath };
 
 	return (
 		<section className="flex flex-wrap gap-10 justify-center max-w-[1100px] mx-auto">
@@ -15,6 +20,8 @@ export default async function EventsList({ city }: EventsListProps) {
 						event={event}
 					/>
 				))}
+
+			<PaginationControls {...paginationControls} />
 		</section>
 	);
 }
