@@ -25,7 +25,10 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
 		<main className="flex flex-col items-center py-24 px-[20px]">
 			<H1 className="mb-28">{city === "all" ? "All Events" : `Events in ${toCapitalCase(city)}`}</H1>
 
-			<Suspense fallback={<Loading />}>
+			<Suspense
+				key={city + page}
+				fallback={<Loading />}
+			>
 				<EventsList
 					city={city}
 					page={+page}
