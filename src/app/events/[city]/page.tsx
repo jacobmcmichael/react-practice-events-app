@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
+import { z } from "zod";
 
 import { toCapitalCase } from "@/lib/utilities";
 import { EventsPageProps } from "@/lib/props";
@@ -17,9 +18,15 @@ export function generateMetadata({ params }: EventsPageProps): Metadata {
 	};
 }
 
+const pageNumberSchema = z.coerce.number().int().positive().optional();
+
 export default async function EventsPage({ params, searchParams }: EventsPageProps) {
 	const city = params.city;
-	const page = searchParams.page || 1;
+	const page = pageNumberSchema.safeParse(searchParams.page);
+
+	if (!page.success) {
+		throw new Error("Invalid page number.");
+	}
 
 	return (
 		<main className="flex flex-col items-center py-24 px-[20px]">
@@ -31,7 +38,7 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
 			>
 				<EventsList
 					city={city}
-					page={+page}
+					page={page.data}
 				/>
 			</Suspense>
 		</main>
