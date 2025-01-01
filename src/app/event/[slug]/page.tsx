@@ -1,16 +1,14 @@
 import { Metadata } from "next";
 import Image from "next/image";
 
-import { toCapitalCase } from "@/lib/utilities";
 import { EventPageProps } from "@/lib/props";
+import { getEvent } from "@/lib/utilities";
 
 import H1 from "@/components/h1";
 
 export async function generateMetadata({ params }: EventPageProps): Promise<Metadata> {
 	const slug = params.slug;
-
-	const response = await fetch(`https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`);
-	const event = await response.json();
+	const event = await getEvent(slug);
 
 	return {
 		title: event.name,
@@ -28,9 +26,7 @@ function SectionParagraph({ children }: { children: React.ReactNode }) {
 
 export default async function Event({ params }: EventPageProps) {
 	const slug = params.slug;
-
-	const response = await fetch(`https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`);
-	const event = await response.json();
+	const event = await getEvent(slug);
 
 	return (
 		<main>
