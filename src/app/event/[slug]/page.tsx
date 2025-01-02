@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 import { EventPageProps } from "@/lib/props";
-import { getEvent } from "@/lib/utilities";
+import { getEvent } from "@/lib/server-utils";
 
 import H1 from "@/components/h1";
 
@@ -22,6 +22,10 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 
 function SectionParagraph({ children }: { children: React.ReactNode }) {
 	return <p className="text-lg leading-8 text-white/75 max-w-4xl mx-auto">{children}</p>;
+}
+
+export function generateStaticParams() {
+	return [{ slug: "comedy-extravaganza" }, { slug: "dj-practice-session" }];
 }
 
 export default async function Event({ params }: EventPageProps) {

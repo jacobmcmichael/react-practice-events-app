@@ -1,5 +1,5 @@
 import { EventsListProps } from "@/lib/props";
-import { getEvents } from "@/lib/utilities";
+import { getEvents } from "@/lib/server-utils";
 
 import EventCard from "@/components/event-card";
 import PaginationControls from "@/components/pagination-controls";
